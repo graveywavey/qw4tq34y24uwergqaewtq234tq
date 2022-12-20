@@ -367,7 +367,6 @@ loadscreen3:AddButton(
                     airshotfunpart = "LowerTorso",
                     airshotfun = false,
                     teleportontarget = false,
-                    lookat = false,
                     Notificationmode = false,
                     Notificationmodepart = "Roblox",
                     autoshoot = false,
@@ -2572,14 +2571,7 @@ loadscreen3:AddButton(
                         aiming.targetaim.chat = v
                     end
                 )
-                local lookatopponent =
-                    legit1:AddToggle(
-                    "LookAt Mode",
-                    false,
-                    function(v)
-                        aiming.targetaim.lookat = v
-                    end
-                )
+
                 local flymodetarget =
                     legit1:AddToggle(
                     "Fly Mode",
@@ -2626,36 +2618,6 @@ loadscreen3:AddButton(
                             game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Velocity =
                                 game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame.lookVector * 0
                             game:GetService("RunService").Stepped:wait()
-                        end
-                    end
-                )
-
-                RunService.RenderStepped:Connect(
-                    function()
-                        if
-                            aiming.targetaim.enabled == true and aiming.targetaim.toggablexd == true and
-                                aiming.targetaim.lookat == true and
-                                game.Players[targetplr].Character:FindFirstChild("HumanoidRootPart")
-                         then
-                            if aiming.targetaim.lookat == true and aiming.targetaim.toggablexd == true then
-                                lplr.Character.HumanoidRootPart.CFrame =
-                                    CFrame.new(
-                                    LocalPlayer.Character.HumanoidRootPart.CFrame.Position,
-                                    Vector3.new(
-                                        game.Players[targetplr].Character.HumanoidRootPart.CFrame.X,
-                                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position.Y,
-                                        game.Players[targetplr].Character.HumanoidRootPart.CFrame.Z
-                                    )
-                                )
-                                lplr.Character.Humanoid.AutoRotate = false
-                                spawn(
-                                    function()
-                                        if aiming.targetaim.lookat == false then
-                                            lplr.Character.Humanoid.AutoRotate = true
-                                        end
-                                    end
-                                )
-                            end
                         end
                     end
                 )
